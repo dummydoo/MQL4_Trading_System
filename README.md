@@ -4,12 +4,14 @@ Creating Automated Trading Systems - blog files (Metatrader 4 - MQL4).
 
 The Experts catalogue contains.
 
-	* Source code expert advisors in .mq4 extension.
+	* Source code expert advisors in .mq4 extension and other documents.
+	  Every EA is stored in separate folder (different name for
+	  every EA). In this folder are stored subdirectories:
 		
-		build - compiled strategy file.
+		build - compiled strategy file (ready to use in Metatrader).
 		doc   - information and documentation for strategy.
-		src   - source code files.
-		test  - examples of test files.
+		src   - source code files (you can made changes and compile files).
+		test  - examples of test files (i show yoy how i tested the strategy).
 
 The Include catalogue contains.
 
