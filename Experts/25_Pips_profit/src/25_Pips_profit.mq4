@@ -5,13 +5,6 @@
 
 #define profit 25
 
-// About this EA:
-// The variable profit is setting on 25 pips.
-// The variable magic number for opened orders is 0.
-// 
-// If OrderStopLoss() is equal OrderTakeProfit() and is equal 0.00000
-// strategy i setting OrderTakeProfit on 25 pips and place the order.
-
 int g_digits = (int)MarketInfo(Symbol(), MODE_DIGITS);
 
 int OnInit(){
@@ -32,6 +25,13 @@ void OnTick(){
         {
             if(OrderSelect(counter, SELECT_BY_POS, MODE_TRADES) == true)
               {
+		  // I dont have to check condition (OrderTakeProfit() == 0.00000 && OrderStopLoss() == 0.00000).
+		  // I have to check only equals betwen them. It is only one situation when OrderTakeProfit() is equal OrderStopLoss().
+		  // OrderTakeProfit() is equal OrderStopLoss() only when investor does not set this parametr in order.
+
+		  // Buy order  - take profit is higher buy price, stop loss is less then buy price.
+		  // Sell order - take profit is less sell price, stop loss is higher then sell price.
+
                   if((OrderType() == OP_BUY) && (OrderMagicNumber() == 0) && (OrderTakeProfit() == OrderStopLoss()))
                     {
                         order_modify_check = OrderModify(OrderTicket(),
